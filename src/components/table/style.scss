@@ -1,0 +1,87 @@
+@mixin mq-medium-only {
+    @media only screen and (max-width: 1023px) {
+        @content;
+    }
+}
+
+.driver-lists {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	table {
+		background: white;
+	    position: relative;
+	    width: 80%;
+	    border-collapse: collapse;
+
+		thead {
+			background-color: cadetblue;
+			@include mq-medium-only {
+				display: none;
+			}
+		}
+
+		tbody {
+			height: 200px;
+			overflow-y: auto;
+			overflow-x: hidden;
+
+			tr {
+				cursor: pointer;
+				&:hover, &:nth-child(even) {
+					background: #f5f5f5;
+				}
+			}
+
+			@include mq-medium-only {
+				font-size: 12px;
+			}
+		}
+
+		th {
+			color: #fff;
+		}
+
+		tr {
+			height: 40px;
+
+			@include mq-medium-only {
+				height: auto;
+				padding: 10px;
+				display: block;
+			}
+		}
+
+		td{
+			@include mq-medium-only {
+				display: block;
+				text-align: left;
+				&:before {
+					content: attr(data-th) ": ";
+					font-weight: bold;
+					width: 6.5em;
+					display: inline-block;
+					color: #999;
+				}
+			}
+		}
+
+		button {
+			padding: 5px;
+			width: 70px;
+			font-size: 12px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: .7s;
+			background-color: #17a2b8;
+			border-color: #17a2b8;
+			color: white;
+
+			@include mq-medium-only {
+				width: 20%;
+				font-size: 10px;
+			}
+		}
+	}
+}
